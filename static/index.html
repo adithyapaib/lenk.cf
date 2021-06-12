@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URL Shortner</title>
+  <meta name="google-site-verification" content="xm8PZzCOP1tVdFNBUVBFLvvfd4w8lUhEUoqvNWr8vlo" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="https://img.icons8.com/emoji/256/000000/dog-emoji.png" />
+  <meta property=”og:image” content=”https://raw.githubusercontent.com/adithyapaib/urml.ml/master/public/husky1.png” />
+  <meta property=”og:image:alt” content=”An open source URL shortner” />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+  <meta name="theme-color" content="#000" />
+  <meta name="description" content="An open-source URL shortner built with nodeJS and vercel serverless function." />
+  <meta name="og:description" content="An open-source URL shortner built with nodeJS and Vercel serverless function" />
+  <meta name="keywords" content="HTML, CSS, JavaScript URL SHortner" />
+  <meta name="author" content="Adithya Pai B" />
+  <link rel="stylesheet" href="/static/assets/styles.css" />
+  <link rel="manifest" href="https://raw.githubusercontent.com/apunady/cdn/main/cdn/urml_api/manifest.json">
+  <link rel="apple-touch-icon" href="https://img.icons8.com/emoji/180/000000/dog-emoji.png">
+  <link rel="stylesheet" href="/css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+
+  <div class="container" id="body">
+    <div class="loader" id="loader">
+      <div class="load"></div>
+    </div>
+    <div class="title">
+      <h2 id='head' style="display: flex; justify-content: center; align-items: center;"></h2>
+      <p>An Open-Source free to use URL shortner.</p>
+    </div>
+    <form autocomplete="off" class="form">
+
+      <input type="url" name="url" id="url" class="urla"
+        placeholder="Enter a URL" pattern="http://.*" required />
+      <input type="url" name="url" id="alias"
+        placeholder="Custom ID (optional)" required />
+      <input type="button" value="Shorten" id="submit">
+      <textarea placeholder="Short URL's" id="ta"
+        cols="10"></textarea>
+    </form>
+
+    <button type="button" class="btn" data-toggle="modal" data-target="#exampleModalCenter"
+      style="background: black; text-transform: capitalize; border-radius: 6px;">Other Domains</button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="sum">
+              <h6>Domains assigined:</h6>
+              <p><a href="https://lenk.cf">https://lenk.cf</a></p>
+              <p><a href="https://nani.cf">https://nani.cf</a></p>
+              <p><a href="https://4543.ml">https://4543.ml</a></p>
+              <p><a href="https://urml.ml">https://urml.ml (slower)</a></p>
+              <p>Note: You can use the slug of the shorterned URL's with any of above domains.</p>
+              <p>i.e. If your URL is 4543.ml/hi it will even work with lenk.cf/hi </p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"
+              style="background: black;">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div><a href="https://github.com/adithyapaib/lenk.cf">Source </a></div>
+      <div style="display: flex; justify-content: center; align-items: center;"><svg style="margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-code-slash" viewBox="0 0 16 16">
+        <path d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z"/>
+      </svg> by  <a style="margin-left: 5px;" href="https://adithyapai.com"> Adithya Pai🔥</a> </div>
+      <div><a href="https://4543.ml/api">API </a></div>
+    
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.rawgit.org/cdn.jsdelivr.net/gh/adithyapaib/urml.ml@master/public/compiled.js"></script>
+    <script>
+      window.addEventListener("load", () => {
+        registerSW();
+      })
+      async function registerSW() {
+        if ('serviceWorker' in navigator) {
+          try {
+            await navigator.serviceWorker.register('/serviceworker')
+          } catch (e) {
+            console.log(e)
+          }
+        }
+      }
+      // Initialize deferredPrompt for use later to show browser install prompt.
+      let deferredPrompt;
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent the mini-infobar from appearing on mobile
+        e.preventDefault();
+        // Stash the event so it can be triggered later.
+        deferredPrompt = e;
+        // Update UI notify the user they can install the PWA
+        showInstallPromotion();
+      });
+      let t = document.getElementById('head');
+      t.innerHTML = ` ${window.location.hostname} <img src="/dog" width="55" height="55" alt="husky"/>`
+      
+    </script>
+</body>
+
+</html>

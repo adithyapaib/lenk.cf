@@ -1,0 +1,389 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  font-family: "Poppins", sans-serif !important;
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1b1717;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 1px 1px 5px #b8b7b7, inset 1px 1px 5px #0000004b;
+  box-shadow: inset 1px 1px 5px #b8b7b7, inset 1px 1px 5px #0000004b;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #67f87a;
+  border-radius: 10px;
+}
+
+body {
+  background: #e0e0e0;
+}
+
+.container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: #e0e0e0;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  padding: 1em 1em 0em 1em;
+}
+
+.container .form {
+  background: #e0e0e0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 80%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border-radius: 2.5em;
+  -webkit-box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.35), -10px -10px 20px whitesmoke, inset 5px 5px 10px whitesmoke, inset -5px -5px 10px rgba(58, 58, 58, 0.35);
+          box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.35), -10px -10px 20px whitesmoke, inset 5px 5px 10px whitesmoke, inset -5px -5px 10px rgba(58, 58, 58, 0.35);
+  margin-bottom: 2em;
+  padding: 3em 10em;
+}
+
+.container .form #url, .container .form #alias {
+  caret-color: #000000;
+  border: none;
+  outline: none;
+  width: 100%;
+  background: #e0e0e0;
+  border-radius: 1.2em;
+  padding: 0.8em 1.2em;
+  -webkit-box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.35), -8px -10px 20px rgba(255, 255, 255, 0.6), inset 5px 5px 5px rgba(255, 255, 255, 0.7), inset -5px -5px 5px rgba(0, 0, 0, 0.25);
+          box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.35), -8px -10px 20px rgba(255, 255, 255, 0.6), inset 5px 5px 5px rgba(255, 255, 255, 0.7), inset -5px -5px 5px rgba(0, 0, 0, 0.25);
+  margin-bottom: 2.5em;
+  -webkit-transition: cubic-bezier(0.075, 0.82, 0.165, 1) 4s;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 4s;
+  color: #1b1717;
+}
+
+.container .form #url::-webkit-input-placeholder, .container .form #alias::-webkit-input-placeholder {
+  color: #0000006c;
+}
+
+.container .form #url:-ms-input-placeholder, .container .form #alias:-ms-input-placeholder {
+  color: #0000006c;
+}
+
+.container .form #url::-ms-input-placeholder, .container .form #alias::-ms-input-placeholder {
+  color: #0000006c;
+}
+
+.container .form #url::placeholder, .container .form #alias::placeholder {
+  color: #0000006c;
+}
+
+.container .form #url:active, .container .form #url:hover, .container .form #alias:active, .container .form #alias:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 5px 15px 15px rgba(255, 255, 255, 0.9), -8px -10px 20px rgba(0, 0, 0, 0.36), inset 5px 5px 5px rgba(0, 0, 0, 0.35), inset -5px -5px 5px rgba(255, 255, 255, 0.35);
+          box-shadow: 5px 15px 15px rgba(255, 255, 255, 0.9), -8px -10px 20px rgba(0, 0, 0, 0.36), inset 5px 5px 5px rgba(0, 0, 0, 0.35), inset -5px -5px 5px rgba(255, 255, 255, 0.35);
+}
+
+.container .form #alias {
+  width: 70%;
+}
+
+.container .form #ta {
+  margin-top: 2em;
+  caret-color: #000000;
+  border: none;
+  outline: none;
+  width: 100%;
+  background: #e0e0e0;
+  border-radius: 1.2em;
+  padding: 2em 1.5em 5em 1.5em;
+  -webkit-box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.35), -8px -10px 20px rgba(255, 255, 255, 0.6), inset 5px 5px 5px rgba(255, 255, 255, 0.7), inset -5px -5px 5px rgba(0, 0, 0, 0.25);
+          box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.35), -8px -10px 20px rgba(255, 255, 255, 0.6), inset 5px 5px 5px rgba(255, 255, 255, 0.7), inset -5px -5px 5px rgba(0, 0, 0, 0.25);
+  margin-bottom: 2em;
+  -webkit-transition: 0.9s;
+  transition: 0.9s;
+  color: #1b1717;
+  resize: none;
+}
+
+.container .form #ta::-webkit-scrollbar {
+  display: none;
+}
+
+.container .form #ta::-webkit-input-placeholder {
+  color: #0000006c;
+}
+
+.container .form #ta:-ms-input-placeholder {
+  color: #0000006c;
+}
+
+.container .form #ta::-ms-input-placeholder {
+  color: #0000006c;
+}
+
+.container .form #ta::placeholder {
+  color: #0000006c;
+}
+
+.container #submit {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  padding: 1.3em 3.3em;
+  cursor: pointer;
+  background: #e0e0e0;
+  border: none;
+  outline: none;
+  border-radius: 1em;
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+  color: #1b1717;
+  margin-left: 5px;
+  -webkit-box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.35), -8px -10px 20px rgba(255, 255, 255, 0.6), inset 5px 5px 5px rgba(255, 255, 255, 0.7), inset -5px -5px 5px rgba(0, 0, 0, 0.25);
+          box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.35), -8px -10px 20px rgba(255, 255, 255, 0.6), inset 5px 5px 5px rgba(255, 255, 255, 0.7), inset -5px -5px 5px rgba(0, 0, 0, 0.25);
+}
+
+.container #submit:active {
+  color: black;
+  -webkit-box-shadow: 5px 15px 15px rgba(255, 255, 255, 0.9), -8px -10px 20px rgba(0, 0, 0, 0.36), inset 5px 5px 5px rgba(0, 0, 0, 0.35), inset -5px -5px 5px rgba(255, 255, 255, 0.35);
+          box-shadow: 5px 15px 15px rgba(255, 255, 255, 0.9), -8px -10px 20px rgba(0, 0, 0, 0.36), inset 5px 5px 5px rgba(0, 0, 0, 0.35), inset -5px -5px 5px rgba(255, 255, 255, 0.35);
+}
+
+.footer {
+  margin-top: 7em;
+  width: 100%;
+  padding: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: rgba(0, 0, 0, 0.993);
+  border-radius: 20px 20px 0px 0px;
+  color: white;
+  overflow-x: hidden !important;
+}
+
+/*, #f8ca00, #8a9b0f*/
+.loader {
+  padding: 0;
+  margin: 0;
+  margin-top: -10vh;
+  position: absolute;
+  width: 100vw;
+  height: 125vh;
+  max-width: 100%;
+  overflow-x: hidden !important;
+  overflow-y: hidden;
+  background: rgba(0, 0, 0, 0.705);
+  z-index: 10000000000000;
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@-webkit-keyframes fsx {
+  50% {
+    -webkit-transform: scale(-1);
+            transform: scale(-1);
+  }
+}
+
+@keyframes fsx {
+  50% {
+    -webkit-transform: scale(-1);
+            transform: scale(-1);
+  }
+}
+
+.load {
+  width: 10vh;
+  height: 10vh;
+  overflow: hidden;
+  position: relative;
+  padding: 6.25em;
+  border-radius: 0.7em;
+  -webkit-animation: fbg 4s steps(1) -1s infinite, fsc 2s steps(1) infinite;
+          animation: fbg 4s steps(1) -1s infinite, fsc 2s steps(1) infinite;
+}
+
+.load::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -1.5em -30em;
+  padding: 30em;
+  -webkit-transform-origin: 50% 0;
+          transform-origin: 50% 0;
+  -webkit-animation: fbg 4s steps(1) -3s infinite, mov 1s infinite alternate, exp 1s ease-in infinite alternate;
+          animation: fbg 4s steps(1) -3s infinite, mov 1s infinite alternate, exp 1s ease-in infinite alternate;
+  content: '';
+}
+
+@-webkit-keyframes fsc {
+  50% {
+    -webkit-transform: scaley(-1);
+            transform: scaley(-1);
+  }
+}
+
+@keyframes fsc {
+  50% {
+    -webkit-transform: scaley(-1);
+            transform: scaley(-1);
+  }
+}
+
+@-webkit-keyframes fbg {
+  0% {
+    background: #000000;
+  }
+  50% {
+    background: #fff;
+  }
+}
+
+@keyframes fbg {
+  0% {
+    background: #000000;
+  }
+  50% {
+    background: #fff;
+  }
+}
+
+@-webkit-keyframes mov {
+  0%, 20% {
+    -webkit-transform: none;
+            transform: none;
+  }
+  100% {
+    -webkit-transform: translatey(1.5em) rotate(0.5turn);
+            transform: translatey(1.5em) rotate(0.5turn);
+  }
+}
+
+@keyframes mov {
+  0%, 20% {
+    -webkit-transform: none;
+            transform: none;
+  }
+  100% {
+    -webkit-transform: translatey(1.5em) rotate(0.5turn);
+            transform: translatey(1.5em) rotate(0.5turn);
+  }
+}
+
+@-webkit-keyframes exp {
+  0%, 20% {
+    -webkit-clip-path: inset(0 28.5em 57em round 50%);
+            clip-path: inset(0 28.5em 57em round 50%);
+  }
+  100% {
+    -webkit-clip-path: inset(0 round 50%/0);
+            clip-path: inset(0 round 50%/0);
+  }
+}
+
+@keyframes exp {
+  0%, 20% {
+    -webkit-clip-path: inset(0 28.5em 57em round 50%);
+            clip-path: inset(0 28.5em 57em round 50%);
+  }
+  100% {
+    -webkit-clip-path: inset(0 round 50%/0);
+            clip-path: inset(0 round 50%/0);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  footer {
+    position: relative;
+    padding: 0.5em;
+    font-size: 0.9em;
+    border-radius: 2px;
+  }
+  .title {
+    margin-top: 2em;
+  }
+  .container {
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+    margin-top: 2em !important;
+    max-width: 100%;
+    padding: 0;
+  }
+  .container .form {
+    margin-bottom: 3em;
+    margin-top: 5em;
+    padding: 5em 1.5em;
+    width: 92%;
+  }
+  .container .form #url {
+    width: 85%;
+  }
+  .container .form #alias {
+    width: 65%;
+  }
+}
+
+.toast {
+  background: #54e346;
+  color: #131313;
+}
+
+.title {
+  margin-bottom: 2em;
+}
