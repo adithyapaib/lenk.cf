@@ -173,7 +173,7 @@ To run this project, you will need to add the following environment variables to
 
 `DB = YOUR_MONGOURI`
 
-
+&nbsp;
   
 ## 🌐Domains
 
@@ -183,10 +183,13 @@ Other domains to this project.
 
 [https://urml.ml](https://urml.ml)
 
-  
+ &nbsp;
+ 
 ## 🚦Acknowledgements
 
  - Dont forget to 🙋🏼‍♂️Follow me on [Github](https://github.com/adithyapaib/) and Star⭐  this Repo
+
+&nbsp;
 
 ## 📑License
 
