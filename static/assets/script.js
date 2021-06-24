@@ -8,6 +8,7 @@ var aliasInput = document.getElementById("alias");
 var opt;
 aliasInput.value == "";
 submitBtn.addEventListener("click", submit);
+//This function comes into action when the submit button is clicked and also checks if the input is a valid url or alias.
 function submit() {
   let str = urlInput.value;
   let r =
@@ -30,6 +31,7 @@ function submit() {
     alert("Invalid URL");
   }
 }
+/* If there is no custom ID provided random 4 digit id is genrated */
 async function generateURL(url) {
   submitBtn.disabled = true;
   loader.style.display = "flex";
@@ -54,6 +56,8 @@ async function generateURL(url) {
     submitBtn.value = "Shorten";
   }, 2500);
 }
+
+/* If there is  custom ID provided The custom Id is registered  */
 async function getCustomURL(customID, url) {
   url = encodeURIComponent(url);
   submitBtn.disabled = true;
@@ -91,6 +95,8 @@ async function getCustomURL(customID, url) {
     }, 2500);
   }
 }
+/* For Progressive web app */
+
 window.addEventListener("load", () => {
   registerSW();
 });
@@ -110,7 +116,3 @@ window.addEventListener("beforeinstallprompt", (e) => {
   deferredPrompt = e;
   showInstallPromotion();
 });
-/* let t = document.getElementById('head');
-      t.innerHTML = ` ${window.location.hostname} <img src="/dog" width="55" height="55" alt="husky"/>`
-
- */
