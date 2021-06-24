@@ -11,20 +11,11 @@ export default async (req, res) => {
   let send = await req.url.substr(1);
   var result;
   result = await ShortUrl.findOne({ shortId: send }).exec();
-  
-  if (await result==null) {
-    
+
+  if ((await result) == null) {
     await res.redirect("/404");
-  } 
-  else
-  {
+  } else {
     let url = await result.url;
     await res.redirect(url);
   }
-
-   
-  
-  
-    
-  
 };
