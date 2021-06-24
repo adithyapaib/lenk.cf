@@ -142,8 +142,7 @@ For web Deployment on  [Vercel](https://cloud.mongodb.com/) use
 #### Register a custom ShortId
 
 ```http
-  localhost:300/custom/<original_url>%3A%3A%3A69<custom_ShortID>
-```
+  localhost:300/custom/<shortIDlength>_<shortID><original_url>
 
 | Parameter                         | File                  | Description                                                    |
 | :--------                         | :-------              | :--------------------------------                              |
@@ -151,6 +150,8 @@ For web Deployment on  [Vercel](https://cloud.mongodb.com/) use
 
 
 &nbsp;
+
+
 #### If the link dosen't exits in Database
 ```http
   localhost:300/404
