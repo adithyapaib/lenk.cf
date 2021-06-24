@@ -1,60 +1,61 @@
-
 {
-    "version": 2,
-    "routes": 
-    [
-        {
-            "src": "/404",
-            "dest": "static/404.html"
-        },
-        {
-            "src": "/",
-            "dest": "static/index.html"
-        },
-        {
-            "src": "/p/.*",
-            "dest": "api/p.js"
-        },
-        {
-            "src": "/css",
-            "dest": "static/assets/styles.css"
-        },
-        {
-            "src": "/dog",
-            "dest": "static/assets/dog.png"
-        },
-
-          {
-            "src": "/0:/",
-            "dest": "static/index.html"
-        },
-        {
-            "src": "/custom/.*",
-            "dest": "api/custom.js"
-        },
-        {
-            "src": "/serviceworker",
-            "dest": "static/assets/sw.js"
-        },
-        {
-            "src": "/all",
-            "dest": "api/all.js"
-        },
-        {
-            "src": "/api",
-            "dest": "api/index.js"
-        },
-        {
-            "src": "/robots.txt",
-            "dest": "static/assets/robots.txt"
-        },
-        {
-            "src": "/.*",
-            "dest": "api/redirect.js",
-            "headers":{ "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"}
-            
-        }
-       
-    ]
-    
+"version": 2,
+"routes": [
+{
+"src": "/404",
+"dest": "static/404.html"
+},
+{
+"src": "/",
+"dest": "static/index.html"
+},
+{
+"src": "/p/.*",
+"dest": "api/p.js"
+},
+{
+"src": "/css",
+"dest": "static/assets/styles.css"
+},
+{
+"src": "/js",
+"dest": "static/assets/script.js"
+},
+{
+"src": "/dog",
+"dest": "static/assets/dog.png"
+},
+{
+"src": "/0:/",
+"dest": "static/index.html"
+},
+{
+"src": "/custom/.*",
+"dest": "api/custom.js"
+},
+{
+"src": "/serviceworker",
+"dest": "static/assets/sw.js"
+},
+{
+"src": "/all",
+"dest": "api/all.js"
+},
+{
+"src": "/api",
+"dest": "api/index.js"
+},
+{
+"src": "/robots.txt",
+"dest": "static/assets/robots.txt"
+},
+{
+"src": "/.*",
+"dest": "api/redirect.js",
+"headers": {
+"key": "Access-Control-Allow-Headers",
+"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+}
+}
+]
 }
