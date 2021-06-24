@@ -142,16 +142,22 @@ For web Deployment on  [Vercel](https://cloud.mongodb.com/) use
 #### Register a custom ShortId
 
 ```http
-  localhost:300/custom/<shortIDlength>_<shortID><original_url>
+  localhost:300/custom/<shortIDLength>_<shortId><original_url>
+```
 
-| Parameter                         | File                  | Description                                                    |
-| :--------                         | :-------              | :--------------------------------                              |
-|   `<url>%3A%3A%3A69<customID>`    | `custom.js`           | Checks if the shortID is taken, return true if shortID is unique else return false if there exits any conflict shortID |
+| Parameter                                      | File                  | Description                                                    |
+| :--------                                      | :-------              | :--------------------------------                              |
+|   `<shortIDLength>_<shortId><original_url>`    | `custom.js`           | Checks if the shortID is taken, return true if shortID is unique else return false if there exits any conflict shortID |
+
+### Example
+
+| Parameter                                      | File                  | Example                                                  |
+| :--------                                      | :-------              | :--------------------------------                              |
+|   `<shortIDLength>_<shortId><original_url>`    | `custom.js`           | `http://localhost:3000/3_adihttps://github.com/adithyapaib` |
+
 
 
 &nbsp;
-
-
 #### If the link dosen't exits in Database
 ```http
   localhost:300/404
