@@ -19,11 +19,9 @@ static (HTML/CSS/JS ) websites. This website can also serve as a Progresive Web 
 
 &nbsp;
 
-![App Screenshot](https://raw.githubusercontent.com/adithyapaib/lenk.cf/main/static/screenshots/Screenshot1.png)
+![App Screenshot](https://raw.githubusercontent.com/adithyapaib/lenk.cf/main/static/screenshots/Screenshot%20(23).png)
 
 &nbsp;
-
-![App Screenshot](https://raw.githubusercontent.com/adithyapaib/lenk.cf/main/static/screenshots/Screenshot%202.png)
 
 
 &nbsp;
