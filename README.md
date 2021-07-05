@@ -121,7 +121,7 @@ For web Deployment on  [Vercel](https://cloud.mongodb.com/) use
 | :-------- | :-------      | :--------------------------------                              |
 | `url`     | `p.js`        | **Required** url of main URL. Responds with a random shortID.  |
 
-# Make sure you are using [encodeURIComponent()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) to send request to /p/
+``` Make sure you are using [encodeURIComponent()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) to send request to /p/ ```
 
 
 &nbsp;
