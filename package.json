@@ -3,6 +3,11 @@
     "@types/materialize-css": "^1.0.10",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "mongoose": "^5.12.12"
+    "materialize-css": "^1.0.0",
+    "mongoose": "^5.12.12",
+    "redis": "^3.1.2",
+    "util": "^0.12.4",
+    "util.promisify": "^1.1.1",
+    "wowjs": "^1.1.3"
   }
 }
