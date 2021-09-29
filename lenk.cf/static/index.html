@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URL Shortner</title>
+  <meta name="google-site-verification" content="xm8PZzCOP1tVdFNBUVBFLvvfd4w8lUhEUoqvNWr8vlo" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="https://img.icons8.com/emoji/256/000000/heart-suit.png" />
+  <meta property=”og:image” content=”https://img.icons8.com/emoji/256/000000/heart-suit.png” />
+  <meta property=”og:image:alt” content=”An open source URL shortner” />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+  <meta name="theme-color" content="#ce1212" />
+  <meta name="description" content="An open-source URL shortner built with nodeJS and vercel serverless function." />
+  <meta name="og:description" content="An open-source URL shortner built with nodeJS and Vercel serverless function" />
+  <meta name="keywords" content="HTML, CSS, JavaScript URL SHortner" />
+  <meta name="author" content="Adithya Pai B" />
+  <link rel="stylesheet" href="/static/assets/styles.css" />
+  <link rel="manifest" href="https://raw.githubusercontent.com/apunady/cdn/main/cdn/urml_api/manifest.json">
+  <link rel="apple-touch-icon" href="https://img.icons8.com/emoji/180/000000/heart-suit.png">
+  <link rel="stylesheet" href="/css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>     
+ <!-- Loader --> 
+  <div class="loader" id="loader"><div class="load"></div></div> 
+  <!-- Main class -->
+  <div class="container">
+    <form autocomplete="off" class="form">
+       <!-- Dynamic header -->
+      <div class="title" id="head" style="margin-left: 0.5em;">
+         <img src="https://img.icons8.com/emoji/48/000000/heart-suit.png"  alt="heart Icon"/>
+         <h6 id="site"> </h6>
+         <h5>Welcome</h5>
+         <script>
+            let t = document.getElementById('site').innerText = `${window.location.hostname}`
+         </script>
+      </div>
+      <div class="wrapper">
+         <div class="input-field">
+            <div class="ip">
+            </div>
+            <input type="url" name="url" id="url" class="icon_prefix"
+               pattern="http://.*" required />
+            <label for="icon_prefix">Enter URL</label>
+         </div>
+         <div class="input-field">
+            <input type="url" name="url" id="alias"/>
+            <label for="icon_prefix">ID (optional)</label>
+         </div>
+         <div class="ot" id="ot">
+            <p data-toggle="modal" data-target="#exampleModalCenter" style="color: #1a73e8;" id="other">Other Domains</p>
+            <input type="button" value="Shorten" id="submit">
+         </div>
+      </div>
+   </form>
+   <!-- Domain info Modal -->
+    <div class="modal fade" id="exampleModalCenter" style="z-index: 1000000 !important;" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"  style="border-radius: 7px;"> <div class="modal-dialog modal-dialog-centered" role="document"> <div class="modal-content"> <div class="modal-body"> <div class="sum"> <h5>Domains assigined</h5><br><p><a target="_blank"  rel="noreferrer" href="https://lenk.cf">https://lenk.cf</a></p><p><a target="_blank"  rel="noreferrer" href="https://nani.cf">https://nani.cf</a></p><p><a target="_blank"  rel="noreferrer" href="https://4543.ml">https://4543.ml</a></p><p><a target="_blank"  rel="noreferrer" href="https://urml.ml">https://urml.ml (slower)</a></p> <br><p> <b>Note:</b> <br> You can use the slug of the shorterned URL's with any of above domains.</p><p>i.e. If your URL is 4543.ml/hi it will even work with lenk.cf/hi  <br><br></p></div></div><div class="modal-footer"> <button type="button" id="gg" data-dismiss="modal" style="background: #1a73e8; text-transform: capitalize; border-radius: 3px;">Close</button> </div></div></div>
+  </div>
+  <div id="footer">
+    <a href="https://github.com/adithyapaib/lenk.cf"  rel="noreferrer">Source</a>
+    <a id="api" href="https://lenk.cf/api"  rel="noreferrer">API</a>
+    <a style="margin-right: 0;" href="https://adithyapai.com"  rel="noreferrer">Adithya</a>
+  </div>
+  </div> 
+  <!-- End of container class -->
+  <!-- Main script file link -->
+<script src="/js"></script>
+</body>
+</html>
