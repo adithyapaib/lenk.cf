@@ -1,4 +1,6 @@
+/* Font used Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+/* colors */
 * {
   font-family: "Poppins", sans-serif;
   padding: 0;
@@ -125,7 +127,6 @@ body {
 
 .container .form .wrapper .ot {
   padding: 0.5em;
-  margin-top: 5em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -136,6 +137,7 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin-bottom: 30px;
 }
 
 .container .form .wrapper .ot p {
@@ -174,6 +176,48 @@ body {
   color: #000;
 }
 
+/*New additions*/
+.form-container {
+  width: 90%;
+  padding: 0;
+}
+
+#heart {
+  margin-bottom: 10px;
+}
+
+#head {
+  padding-left: 2em;
+  width: 100%;
+  margin-bottom: 3em;
+  text-align: center;
+  margin-left: -1em !important;
+}
+
+#footer {
+  min-width: 500px;
+  width: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 15px;
+  padding-top: 2em;
+  margin-right: 2em;
+}
+
+#footer a {
+  color: #757575 !important;
+  margin-right: 25px;
+}
+
+#footer a:hover {
+  color: #1a73e8;
+}
+
+/* Loader CSS */
 /*, #f8ca00, #8a9b0f*/
 .loader {
   padding: 0;
@@ -314,33 +358,7 @@ body {
   }
 }
 
-#head {
-  padding-left: 2em;
-  width: 100%;
-  margin-bottom: 3em;
-  text-align: center;
-  margin-left: -1em !important;
-}
-
-#footer {
-  min-width: 500px;
-  width: 40%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  padding: 15px;
-  padding-top: 2em;
-  margin-right: 2em;
-}
-
-#footer a {
-  color: #757575 !important;
-  margin-right: 25px;
-}
-
+/* Media query for responsiveness */
 @media only screen and (max-width: 900px) {
   #head {
     display: -webkit-box;
@@ -424,8 +442,9 @@ body {
   }
 }
 
+/* Other css */
 .toast {
-  background: #4BB543;
+  background: #4bb543;
   color: #ffffff;
 }
 
