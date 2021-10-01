@@ -79,11 +79,11 @@ body {
       }
       .ot {
         padding: 0.5em;
-        margin-top: 5em;
         display: flex;
         width: 100%;
         align-items: center;
         justify-content: space-between;
+        margin-bottom: 30px;
         p {
           cursor: pointer;
         }
@@ -116,8 +116,14 @@ body {
       }
     }
   }
+}/*New additions*/
+.form-container{
+  width: 90%;
+  padding: 0;
 }
-
+#heart{
+  margin-bottom: 10px;
+}
 #head {
   padding-left: 2em;
   width: 100%;
