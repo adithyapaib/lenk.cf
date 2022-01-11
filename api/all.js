@@ -19,7 +19,6 @@ export default async (req, res ) =>
     const all = await ShortUrl.find(filter);
     all.unshift({numberOfShortURLS: all.length});
     res.json(all)
-    let r = await client.set("redisdata", JSON.stringify(all), "EX", 360);
      
     
 }
