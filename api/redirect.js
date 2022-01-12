@@ -16,6 +16,6 @@ export default async (req, res) => {
     await res.redirect("/404");
   } else {
     let url = await result.url;
-    await res.redirect(url);
+    await res.redirect("https://"+url);
   }
 };
