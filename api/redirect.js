@@ -16,6 +16,11 @@ export default async (req, res) => {
     await res.redirect("/404");
   } else {
     let url = await result.url;
+    /* check if url has https else append it  */
+    if (url.substr(0, 4) != "http"  ) {
+      url = "https://" + url;
+    }
+    
     await res.redirect(url);
   }
 };
