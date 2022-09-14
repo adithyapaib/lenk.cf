@@ -1,9 +1,7 @@
 
 # ❤️lenk.cf
 
-A URL shortner made using NodeJS, MongoDB and Vercel serverless function.
-This project also includes a serverless API. With the help of this API we can Integreate the URL shortner with basic
-static (HTML/CSS/JS ) websites. This website can also serve as a Progresive Web Application (PWA) where you can install this website as a normal Application on your PC or Phone.
+A URL shortener made using NodeJS, MongoDB, and Vercel serverless function. This project also includes a serverless API. With the help of this API, we can Integrate the URL shortener with basic static (HTML/CSS/JS ) websites. This website can also serve as a Progressive Web Application (PWA) where you can install this website as a normal Application on your PC or Phone.
 
 
 &nbsp;
