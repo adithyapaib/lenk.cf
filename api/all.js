@@ -6,8 +6,6 @@ require('dotenv').config()
 
 export default async (req, res ) =>
 {
-    
-  
   console.log("No data in redis");
     await mongoose.connect(process.env.DB, {
         dbName: 'lenk-cf',
@@ -15,8 +13,7 @@ export default async (req, res ) =>
         useUnifiedTopology: true,
         useCreateIndex: true,
     })
-    const filter = {};
-    const all = await ShortUrl.find(filter);
+    let all = await ShortUrl.find({});
     all.unshift({numberOfShortURLS: all.length});
     res.json(all)
      
