@@ -30,6 +30,10 @@
 "dest": "static/index.html"
 },
 {
+"src": "/custom",
+"dest": "api/custom.js"
+},
+{
 "src": "/custom/.*",
 "dest": "api/custom.js"
 },

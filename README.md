@@ -272,6 +272,22 @@ Validation:
 - `shortId` is required.
 - `shortId` must match `^[a-zA-Z0-9_-]+$`.
 
+### `GET /custom/<encodedUrl>%3A%3A%3A69<custom_shortID>`
+
+Supports the legacy custom-link format used by the older API index.
+
+Example:
+
+```http
+GET /custom/https%3A%2F%2Fexample.com%3A%3A%3A69docs
+```
+
+Behavior:
+
+- Decodes the URL portion before `:::69`.
+- Uses the value after `:::69` as the requested custom short ID.
+- Returns the same success and conflict payloads as `POST /custom`.
+
 ### `GET /all`
 
 Returns all stored documents, prefixed with a count object.

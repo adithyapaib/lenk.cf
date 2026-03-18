@@ -15,7 +15,8 @@ module.exports = async (req, res) => {
         "/p/<url>":
           "Creates a new shortID for the url sent or returns a new shortID.",
       },
-      {"/custom/<url>%3A%3A%3A69<custom_shortID>": "POST /custom — body: { url, shortId }. Creates a custom short link."},
+      {"POST /custom": "body: { url, shortId }. Creates a custom short link."},
+      {"GET /custom/<url>%3A%3A%3A69<custom_shortID>": "Legacy custom-link endpoint. Creates a custom short link."},
       {"example for custom ID": "POST /custom  body: { url: 'https://google.com', shortId: 'google' }"},
       {"/css": "styles.css"},
       {"/.*": "redirect.js this file checks if shortID is present in DB and redirects to the destination. Else redirects to /404"},
