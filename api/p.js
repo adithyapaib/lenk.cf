@@ -1,42 +1,76 @@
-import mongoose from "mongoose";
-require("dotenv").config();
-import ShortUrl from "../models/model";
-function makeid(r) {
-  for (
-    var a = [],
-      n = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
-      o = n.length,
-      t = 0;
-    t < r;
-    t++
-  )
-    a.push(n.charAt(Math.floor(Math.random() * o)));
-  return a.join("");
-}
-export default async (req, res) => {
-  await mongoose.connect(process.env.DB, {
-    dbName: "lenk-cf",
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-  });
-  var finalURL = decodeURIComponent(await req.url.substr(3));
-  let r =
-    /^(?:(?:https?|http|www):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
-  if (r.test(finalURL)) {
-    let urlExists = await ShortUrl.findOne({ url: finalURL });
-    if (urlExists) await res.json(urlExists.shortId);
-    else {
-      let shortId = makeid(3);
-      let idExists = await ShortUrl.findOne({ shortId: shortId });
-      if (idExists) shortId = makeid(4);
-      let shortUrl = await new ShortUrl({ url: finalURL, shortId: shortId });
-      let result = await shortUrl.save();
-      await res.json(result.shortId);
-    }
+const connectToDatabase = require('./_lib/db');
+const ShortUrl = require('../models/model');
+const { cacheGet, cacheSet } = require('./_lib/cache');
+require('dotenv').config();
+
+const URL_TTL      = 60 * 60 * 24 * 7;  // 7 days  (url → shortId)
+const REDIRECT_TTL = 60 * 60 * 24 * 30; // 30 days (shortId → url)
+
+function makeId(length) {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
   }
-  else
-  {
-    res.json("Invalid URL")
+  return result;
+}
+
+module.exports = async (req, res) => {
+  // Security headers
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+
+  try {
+    // Extract URL after /p/
+    const parts = req.url.split('/p/');
+    if (parts.length < 2) {
+      return res.status(400).json({ error: 'No URL provided' });
+    }
+    let finalURL = decodeURIComponent(parts[1]);
+
+    // Validate URL
+    try {
+      new URL(finalURL);
+    } catch (_) {
+      return res.status(400).json({ error: 'Invalid URL' });
+    }
+
+    // Check cache for existing URL → shortId
+    const cachedShortId = await cacheGet(`url:${finalURL}`);
+    if (cachedShortId) {
+      console.log(`[p.js] Cache HIT: ${finalURL}`);
+      return res.json(cachedShortId);
+    }
+
+    await connectToDatabase();
+
+    // Check if URL already exists in DB
+    const existing = await ShortUrl.findOne({ url: finalURL });
+    if (existing) {
+      await cacheSet(`url:${finalURL}`, existing.shortId, URL_TTL);
+      await cacheSet(`shortid:${existing.shortId}`, finalURL, REDIRECT_TTL);
+      return res.json(existing.shortId);
+    }
+
+    // Generate unique shortId
+    let shortId = makeId(3);
+    let collision = await ShortUrl.findOne({ shortId });
+    if (collision) {
+      shortId = makeId(5);
+    }
+
+    const shortUrl = new ShortUrl({ url: finalURL, shortId });
+    const saved = await shortUrl.save();
+
+    // Populate both cache directions
+    await cacheSet(`url:${saved.url}`, saved.shortId, URL_TTL);
+    await cacheSet(`shortid:${saved.shortId}`, saved.url, REDIRECT_TTL);
+    console.log(`[p.js] Saved & cached: ${saved.shortId}`);
+
+    return res.json(saved.shortId);
+  } catch (err) {
+    console.error('p.js error:', err);
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
 };

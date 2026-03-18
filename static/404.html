@@ -1,81 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>😓 Link nahi hai bro </title>
-    <link rel="shortcut icon" href="https://img.icons8.com/fluent/48/000000/error.png" type="image/x-icon">
-    <meta name="theme-color" content="#990000">
-    <meta
-    name="description"
-    content="Link not found :("
-  />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Link Not Found | LENK.CF</title>
+  <meta name="description" content="The short link you're looking for doesn't exist or has expired. Head back to LENK.CF to create a new one.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#1f1b14">
+  <link rel="icon" href="https://img.icons8.com/emoji/256/000000/link.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:       oklch(13% 0.022 72);
+      --surface:  oklch(17% 0.020 72);
+      --ink:      oklch(92% 0.014 72);
+      --muted:    oklch(56% 0.012 72);
+      --accent:   oklch(77% 0.19 68);
+      --line:     oklch(26% 0.018 72);
+      --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+      --font-mono:    'Fira Code', monospace;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-mono);
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: 32px 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .card {
+      width: min(100%, 560px);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      animation: slide-in 0.55s var(--ease-out) both;
+    }
+
+    @keyframes slide-in {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-header {
+      padding: 32px 32px 24px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .error-code {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 16vw, 7rem);
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      color: var(--accent);
+    }
+
+    .wordmark {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 4vw, 1.4rem);
+      font-weight: 300;
+      color: oklch(75% 0.012 72);
+      letter-spacing: -0.02em;
+    }
+
+    .wordmark strong {
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .card-body {
+      padding: 28px 32px 32px;
+    }
+
+    .error-title {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .error-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 28px;
+      max-width: 38ch;
+    }
+
+    /* Animated chain link */
+    .link-anim {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 32px;
+    }
+
+    .link-anim .ring {
+      width: 22px;
+      height: 14px;
+      border: 2px solid var(--line);
+      border-radius: 8px;
+      position: relative;
+      animation: ring-pulse 2.4s ease-in-out infinite;
+    }
+
+    .link-anim .ring:nth-child(1) { animation-delay: 0s; }
+    .link-anim .ring:nth-child(2) {
+      margin-left: -8px;
+      border-color: var(--accent);
+      animation-delay: 0.3s;
+      opacity: 0.5;
+    }
+    .link-anim .ring:nth-child(3) {
+      margin-left: -8px;
+      border-color: var(--line);
+      animation-delay: 0.6s;
+    }
+    .link-anim .ring:nth-child(4) {
+      margin-left: -8px;
+      border-color: var(--line);
+      animation-delay: 0.9s;
+      opacity: 0.3;
+    }
+
+    @keyframes ring-pulse {
+      0%, 100% { transform: scaleY(1); opacity: 0.6; }
+      50%       { transform: scaleY(0.7); opacity: 1; }
+    }
+
+    .home-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      min-width: 200px;
+      transition: background 0.2s;
+    }
+
+    .home-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: oklch(70% 0.21 65);
+      transform: translateX(-101%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .home-btn:hover::before { transform: translateX(0); }
+
+    .home-btn span { position: relative; z-index: 1; }
+
+    .home-btn .arrow {
+      position: relative;
+      z-index: 1;
+      transition: transform 0.2s;
+    }
+
+    .home-btn:hover .arrow { transform: translateX(4px); }
+
+    @media (max-width: 480px) {
+      .card-header, .card-body { padding-left: 20px; padding-right: 20px; }
+      .card { border-right: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 <body>
-  <style>
-    @import url("https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-* {
-  font-family: 'Arvo', serif;
-  margin: 0;
-  padding: 0;
-}
 
-.container {
-  width: 100%;
-  height: 95vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
+  <article class="card" role="main">
+    <header class="card-header">
+      <div class="error-code">404</div>
+      <div class="wordmark"><strong>lenk</strong>.cf</div>
+    </header>
+    <div class="card-body">
+      <h1 class="error-title">Link not found</h1>
+      <p class="error-desc">This short link doesn't exist or may have expired. Double-check the URL or create a fresh one below.</p>
 
-.container h1 {
-  font-size: 9em;
-}
+      <div class="link-anim" aria-hidden="true">
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+      </div>
 
-.container h3 {
-  text-align: center;
-}
-
-.container img {
-  max-width: 100%;
-}
-
-.container footer a {
-  background: #000;
-  padding: 0.7em 3em;
-  border-radius: 5px;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-  color: whitesmoke;
-}
-
-.container footer a:hover {
-  background: #02b402;
-  padding: 1em 3.3em;
-}
-/*# sourceMappingURL=404.css.map */
-  </style>
-    <div class="container">
-      <h1>404</h1>
-      <h3>Link Nhai Hai apan ke pass. <br>Kal Anna.</h3>
-        <img src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif" alt="patta nahi :(">
-        <footer>
-            <a href="https://lenk.cf">Home</a>
-        </footer>
+      <a href="https://lenk.cf" class="home-btn">
+        <span>Back to LENK.CF</span>
+        <span class="arrow">→</span>
+      </a>
     </div>
-    
+  </article>
+
 </body>
 </html>

@@ -1,17 +1,13 @@
-import mongoose from "mongoose";
-require("dotenv").config();
-export default async (req, res) => {
-  let uri = process.env.DB;
-  var connect = "offline";
-  await mongoose
-    .connect(uri, {
-      dbName: "lenk-cf",
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    })
-    .then((connect = "online"));
-  var response = {
+const connectToDatabase = require('./_lib/db');
+require('dotenv').config();
+
+module.exports = async (req, res) => {
+  let connect = 'offline';
+  try {
+    await connectToDatabase();
+    connect = 'online';
+  } catch (_) {}
+  const response = {
     server: connect,
     end_points: [
       { "/": "index.html" },
@@ -19,8 +15,8 @@ export default async (req, res) => {
         "/p/<url>":
           "Creates a new shortID for the url sent or returns a new shortID.",
       },
-      {"/custom/<url>%3A%3A%3A69<custom_shortID>": "Creates a custom route for the slug sent make sure the fetch request has %3A%3A%3A69 seperated by a custom ID"},
-      {"example for custom ID": "/custom/https://google.com%3A%3A%3A69google"},
+      {"/custom/<url>%3A%3A%3A69<custom_shortID>": "POST /custom — body: { url, shortId }. Creates a custom short link."},
+      {"example for custom ID": "POST /custom  body: { url: 'https://google.com', shortId: 'google' }"},
       {"/css": "styles.css"},
       {"/.*": "redirect.js this file checks if shortID is present in DB and redirects to the destination. Else redirects to /404"},
       {"/404": "error page if shortID dosent exists in database"},
@@ -32,5 +28,5 @@ export default async (req, res) => {
     slow_domains: ["http://www.urml.ml", "http://nani.cf"],
     credits:{"Adithya Pai B ❤️" : "https://adithyapai.com"}
   };
-  await res.json(response);
+  res.json(response);
 };

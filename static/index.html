@@ -1,103 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8" />
-   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <title>URL Shortner</title>
-   <meta name="google-site-verification" content="xm8PZzCOP1tVdFNBUVBFLvvfd4w8lUhEUoqvNWr8vlo" />
-   <meta property="og:type" content="website" />
-   <link rel="icon" href="https://img.icons8.com/emoji/256/000000/heart-suit.png" />
-   <meta property=”og:image” content=”https://img.icons8.com/emoji/256/000000/heart-suit.png” />
-   <meta property=”og:image:alt” content=”An open source URL shortner” />
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"></script>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
-      integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
-      crossorigin="anonymous"></script>
-   <meta name="theme-color" content="#ce1212" />
-   <meta name="description" content="An open-source URL shortner built with nodeJS and vercel serverless function." />
-   <meta name="og:description" content="An open-source URL shortner built with nodeJS and Vercel serverless function" />
-   <meta name="keywords" content="HTML, CSS, JavaScript URL SHortner" />
-   <meta name="author" content="Adithya Pai B" />
-   <link rel="stylesheet" href="/static/assets/styles.css" />
-   <link rel="manifest" href="https://raw.githubusercontent.com/apunady/cdn/main/cdn/urml_api/manifest.json">
-   <link rel="apple-touch-icon" href="https://img.icons8.com/emoji/180/000000/heart-suit.png">
-   <link rel="stylesheet" href="/css" />
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LENK.CF — Free URL Shortener | Create Short Links Instantly</title>
+
+    <!-- Primary SEO -->
+    <meta name="description" content="LENK.CF is a free, fast, open-source URL shortener. Shorten long links, create custom aliases, and share across the web instantly. No sign-up needed.">
+    <meta name="keywords" content="url shortener, link shortener, free url shortener, short url generator, custom alias, lenk cf, nani cf, urml ml, open source url shortener">
+    <meta name="author" content="Adithya Pai">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="https://lenk.cf/">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lenk.cf/">
+    <meta property="og:title" content="LENK.CF — Free URL Shortener">
+    <meta property="og:description" content="Shorten any URL instantly. Free, fast, open-source. Create custom link aliases. No account required.">
+    <meta property="og:image" content="https://lenk.cf/assets/og-image.png">
+    <meta property="og:image:alt" content="LENK.CF — Free URL Shortener interface">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="LENK.CF">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="LENK.CF — Free URL Shortener">
+    <meta name="twitter:description" content="Shorten any URL instantly. Free, open-source, no account needed.">
+    <meta name="twitter:image" content="https://lenk.cf/assets/og-image.png">
+
+    <!-- GEO / Geographic -->
+    <meta name="geo.region" content="IN">
+    <meta name="geo.placename" content="India">
+    <meta name="language" content="en">
+    <meta name="rating" content="general">
+    <meta name="revisit-after" content="3 days">
+
+    <!-- Theme & PWA -->
+    <meta name="theme-color" content="#1f1b14">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="LENK.CF">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://img.icons8.com/emoji/256/000000/link.png">
+
+    <!-- Fonts: Bricolage Grotesque (display) + Fira Code (mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css">
+
+    <!-- Structured Data: WebApplication + FAQ (GEO-friendly) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://lenk.cf/#app",
+          "name": "LENK.CF",
+          "url": "https://lenk.cf/",
+          "description": "Free, fast, open-source URL shortener. Create short links with custom aliases instantly. No account required.",
+          "applicationCategory": "UtilityApplication",
+          "applicationSubCategory": "URL Shortener",
+          "operatingSystem": "Any",
+          "browserRequirements": "HTML5",
+          "inLanguage": "en",
+          "isAccessibleForFree": true,
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+          "featureList": ["URL shortening", "Custom aliases", "Multiple domains", "No sign-up required", "Open source"],
+          "author": { "@type": "Person", "name": "Adithya Pai", "url": "https://adithyapai.com" }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How do I shorten a URL with LENK.CF?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Paste your long URL into the input field and click Shorten. Your shortened link is created instantly with no sign-up needed." }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I create a custom alias for my short link?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes. Use the Custom alias field to set a memorable short name using letters, numbers, hyphens, or underscores. Your link will be available at lenk.cf/your-alias." }
+            },
+            {
+              "@type": "Question",
+              "name": "Is LENK.CF free to use?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Completely free. LENK.CF is open-source with no ads, no tracking, and no account required." }
+            },
+            {
+              "@type": "Question",
+              "name": "What other domains does LENK.CF support?",
+              "acceptedAnswer": { "@type": "Answer", "text": "LENK.CF short links also work on nani.cf, urml.ml, and 4543.ml. All IDs are interchangeable across every domain." }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
-
 <body>
-   <!-- Loader -->
-   <div class="loader" id="loader">
-      <div class="load"></div>
-   </div>
-   <!-- Main class -->
-   <img src="https://img.icons8.com/emoji/48/000000/heart-suit.png" alt="heart Icon" id="heart" />
-   <div class="container">
-      <form autocomplete="off" class="form">
-         <!-- Dynamic header -->
-         <div class="title" id="head" style="margin-left: 0.5em;">
-            <h6 id="site"> </h6>
-            <h5>Welcome</h5>
-            <script>
-               let t = document.getElementById('site').innerText = `${window.location.hostname}`
-            </script>
-         </div>
-         <div class="wrapper">
-            <div class="form-container">
-               <div class="input-field">
-                  <div class="ip">
-                  </div>
-                  <input type="url" name="url" id="url" class="icon_prefix" pattern="http://.*" required />
-                  <label for="icon_prefix">Enter URL</label>
-               </div>
-               <div class="input-field">
-                  <input type="url" name="url" id="alias" />
-                  <label for="icon_prefix">ID (optional)</label>
-               </div>
-            </div>
-            <div class="ot" id="ot">
-               <p data-toggle="modal" data-target="#exampleModalCenter" style="color: #1a73e8;" id="other">Other
-                  Domains
-               </p>
-               <input type="button" value="Shorten" id="submit">
-            </div>
-         </div>
-      </form>
-      <!-- Domain info Modal -->
-      <div class="modal fade" id="exampleModalCenter" style="z-index: 1000000 !important;" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="border-radius: 7px;">
-         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-               <div class="modal-body">
-                  <div class="sum">
-                     <h5>Domains assigined</h5><br>
-                     <p><a target="_blank" rel="noreferrer" href="https://lenk.cf">https://lenk.cf</a></p>
-                     <p><a target="_blank" rel="noreferrer" href="https://nani.cf">https://nani.cf</a></p>
-                     <p><a target="_blank" rel="noreferrer" href="https://4543.ml">https://4543.ml</a></p>
-                     <p><a target="_blank" rel="noreferrer" href="https://urml.ml">https://urml.ml (slower)</a></p> <br>
-                     <p> <b>Note:</b> <br> You can use the slug of the shorterned URL's with any of above domains.</p>
-                     <p>i.e. If your URL is 4543.ml/hi it will even work with lenk.cf/hi <br><br></p>
-                  </div>
-               </div>
-               <div class="modal-footer"> <button type="button" id="gg" data-dismiss="modal"
-                     style="background: #1a73e8; text-transform: capitalize; border-radius: 3px;">Close</button> </div>
-            </div>
-         </div>
-      </div>
-      <div id="footer">
-         <a href="https://github.com/adithyapaib/lenk.cf" rel="noreferrer">Source</a>
-         <a id="api" href="https://lenk.cf/api" rel="noreferrer">API</a>
-         <a style="margin-right: 0;" href="https://adithyapai.com" rel="noreferrer">Adithya</a>
-      </div>
-   </div>
-   <!-- End of container class -->
-   <!-- Main script file link -->
-   <script src="/js"></script>
-</body>
 
+  <!-- ── Intro Overlay ──────────────────────────────────────────────── -->
+  <div id="intro-overlay" class="intro-overlay" role="progressbar" aria-label="Loading LENK.CF" aria-busy="true">
+    <div class="intro-stage">
+      <div class="intro-long-url" id="intro-long" aria-hidden="true">https://very-long-website-url.com/article/2024/something</div>
+      <div class="intro-arrow" id="intro-arrow" aria-hidden="true">
+        <svg width="36" height="16" viewBox="0 0 36 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="8" x2="26" y2="8" stroke="currentColor" stroke-width="1.5"/>
+          <polyline points="20,2 28,8 20,14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="intro-short-url" id="intro-short" aria-hidden="true">lenk<span class="intro-dot">.</span>cf/<strong>ab3z</strong></div>
+      <div class="intro-label" id="intro-label" aria-hidden="true">compressed · ready</div>
+    </div>
+    <div class="intro-progress" aria-hidden="true">
+      <div class="intro-progress-fill" id="intro-progress"></div>
+    </div>
+  </div>
+
+  <!-- ── Main App ──────────────────────────────────────────────────── -->
+  <main class="container" id="app" aria-hidden="true">
+
+    <!-- Header -->
+    <header class="site-header">
+      <h1 class="wordmark">lenk<span class="dot">.</span><span class="tld">cf</span></h1>
+      <div class="header-meta">
+        <div class="live-badge">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span>Live</span>
+        </div>
+        <span class="hostname-label" id="hostname-label">lenk.cf</span>
+      </div>
+    </header>
+
+    <!-- Form -->
+    <section class="form-section" aria-label="URL Shortener">
+      <form id="shortener-form" autocomplete="off" novalidate>
+
+        <div class="field">
+          <label for="url" class="field-label">Long URL</label>
+          <input
+            type="url"
+            id="url"
+            name="url"
+            class="field-input"
+            placeholder="https://very-long-website.com/some/deep/path"
+            required
+            aria-required="true"
+            aria-describedby="url-hint"
+          >
+          <span id="url-hint" class="field-hint">Paste any URL. We'll make it short.</span>
+        </div>
+
+        <div class="field">
+          <label for="alias" class="field-label">Custom alias <span class="optional">(optional)</span></label>
+          <div class="alias-row">
+            <span class="alias-prefix" aria-hidden="true">lenk.cf/</span>
+            <input
+              type="text"
+              id="alias"
+              name="alias"
+              class="field-input alias-input"
+              placeholder="my-link"
+              maxlength="20"
+              pattern="[a-zA-Z0-9\-_]+"
+              aria-describedby="alias-hint"
+            >
+          </div>
+          <span id="alias-hint" class="field-hint">Letters, numbers, hyphens, underscores only.</span>
+        </div>
+
+        <button type="submit" id="submit" class="action-btn">
+          <span class="action-btn__label">Shorten</span>
+          <div class="dots-loader" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <span class="action-btn__icon" aria-hidden="true">→</span>
+        </button>
+
+      </form>
+    </section>
+
+    <!-- Result -->
+    <section id="result-section" class="result-section" aria-live="polite" aria-label="Shortened URL result" hidden>
+      <p class="result-label">Your link — <code id="res-id"></code></p>
+      <div class="result-row">
+        <input type="text" id="result-url" class="result-input" readonly aria-label="Shortened URL">
+        <button id="copy-btn" class="copy-btn" aria-label="Copy to clipboard">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          Copy
+        </button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <nav class="footer-nav" aria-label="Site links">
+        <a href="https://github.com/adithyapaib/lenk.cf" target="_blank" rel="noopener noreferrer">Source</a>
+        <a href="/api" rel="noopener">API</a>
+        <a href="https://adithyapai.com" target="_blank" rel="noopener noreferrer">By Adithya</a>
+        <button type="button" id="domains-trigger" class="footer-link-btn">Domains</button>
+      </nav>
+      <span class="footer-version">v2.0</span>
+    </footer>
+
+  </main>
+
+  <!-- Domains panel -->
+  <aside id="domains-panel" class="domains-panel" hidden aria-label="All available domains">
+    <div class="domains-panel__inner">
+      <button id="close-domains" class="panel-close" aria-label="Close domains panel">✕</button>
+      <h2 class="panel-title">All domains</h2>
+      <ul class="domain-list">
+        <li><a href="https://lenk.cf" target="_blank" rel="noopener noreferrer">lenk.cf</a></li>
+        <li><a href="https://nani.cf" target="_blank" rel="noopener noreferrer">nani.cf</a></li>
+        <li><a href="https://4543.ml" target="_blank" rel="noopener noreferrer">4543.ml</a></li>
+        <li><a href="https://urml.ml" target="_blank" rel="noopener noreferrer">urml.ml</a></li>
+      </ul>
+      <p class="panel-note">All slug IDs work across every domain above.</p>
+    </div>
+  </aside>
+
+  <!-- Toast container -->
+  <div id="toast-container" aria-live="assertive" aria-atomic="true"></div>
+
+  <!-- API Loader bar -->
+  <div id="loader" class="loader" aria-hidden="true" hidden>
+    <span class="loader__bar"></span>
+  </div>
+
+  <script src="/js"></script>
+</body>
 </html>

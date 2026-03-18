@@ -1,27 +1,56 @@
-import mongoose from "mongoose";
-require("dotenv").config();
-import ShortUrl from "../models/model";
-function digits_count(n) { var count = 0; if (n >= 1) ++count; while (n / 10 >= 1) { n /= 10; ++count; } return count; }
-export default async (req, res) => {
-  await mongoose.connect(process.env.DB, {
-    dbName: "lenk-cf",
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-  });
-  let longURL = decodeURIComponent(await req.url.substr(8));
-  let customIdLength = parseInt(longURL.split("_", 3)[0]);
-  console.log(customIdLength);
-  let digiLen = digits_count(customIdLength);
-  let customId = longURL.substring(digiLen + 1, digiLen + 1 + customIdLength);
-  let URL = longURL.substring(digiLen + 1 + customIdLength);
-  console.log(URL);
-  let urlExists = await ShortUrl.findOne({ shortId: customId }).exec();
-  if (await urlExists) {
-    await res.json(0);
-  } else {
-    let shortUrl = await new ShortUrl({ url: URL, shortId: customId });
-    let result = await shortUrl.save();
-    await res.json(customId);
+const connectToDatabase = require('./_lib/db');
+const ShortUrl = require('../models/model');
+const { cacheSet } = require('./_lib/cache');
+require('dotenv').config();
+
+const URL_TTL      = 60 * 60 * 24 * 7;  // 7 days
+const REDIRECT_TTL = 60 * 60 * 24 * 30; // 30 days
+
+module.exports = async (req, res) => {
+  // Security headers
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method Not Allowed' });
+  }
+
+  try {
+    await connectToDatabase();
+
+    const { url, shortId: customId } = req.body || {};
+    if (!url || !customId) {
+      return res.status(400).json({ error: 'Missing url or shortId in request body' });
+    }
+
+    // Validate alias characters
+    if (!/^[a-zA-Z0-9\-_]+$/.test(customId)) {
+      return res.status(400).json({ error: 'shortId must be alphanumeric with hyphens/underscores only' });
+    }
+
+    // Validate target URL
+    try {
+      new URL(url);
+    } catch (_) {
+      return res.status(400).json({ error: 'Invalid Target URL' });
+    }
+
+    const exists = await ShortUrl.findOne({ shortId: customId }).exec();
+    if (exists) {
+      return res.json(0); // conflict indicator
+    }
+
+    const shortUrl = new ShortUrl({ url, shortId: customId });
+    const saved = await shortUrl.save();
+
+    // Cache both directions
+    await cacheSet(`url:${url}`, saved.shortId, URL_TTL);
+    await cacheSet(`shortid:${saved.shortId}`, url, REDIRECT_TTL);
+    console.log(`[custom.js] Saved & cached: ${saved.shortId}`);
+
+    return res.json(saved.shortId);
+  } catch (err) {
+    console.error('custom.js error:', err);
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
 };

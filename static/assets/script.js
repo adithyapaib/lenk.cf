@@ -1,118 +1,240 @@
-var loader = document.getElementById("loader");
-document.title = window.location.hostname + " | Shorten URL's with ease!";
-var http = "http";
-if (location.protocol == "https:") http = "https";
-var submitBtn = document.getElementById("submit");
-var urlInput = document.getElementById("url");
-var aliasInput = document.getElementById("alias");
-var opt;
-aliasInput.value == "";
-submitBtn.addEventListener("click", submit);
-//This function comes into action when the submit button is clicked and also checks if the input is a valid url or alias.
-function submit() {
-  let str = urlInput.value;
-  let r =
-    /^(?:(?:https?|http|www):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
-  if (r.test(str)) {
-    if (aliasInput.value != "") {
-      var letterNumber = /^[0-9a-zA-Z]+$/;
-      if (letterNumber.test(aliasInput.value))
-        getCustomURL(aliasInput.value, str);
-      else {
-        aliasInput.value = "";
-        alert("Invalid Alias");
-      }
-    } else {
-      generateURL(str);
-    }
-  } else {
-    urlInput.value = "";
-    aliasInput.value = "";
-    alert("Invalid URL");
-  }
-}
-/* If there is no custom ID provided random 4 digit id is genrated */
-async function generateURL(url) {
-  submitBtn.disabled = true;
-  loader.style.display = "flex";
-  let target = `${http}://${window.location.host}/p/${encodeURIComponent(url)}`;
-  let response = await fetch(target).then((response) => response.json());
-  urlInput.value = await `${http}://${window.location.host}/${response}`;
-  var r = await `${http}://${window.location.host}/${response}`;
-  submitBtn.value = "copy";
-  urlInput.select();
-  document.execCommand("copy");
-  submitBtn.value = "Copied !";
-  loader.style.display = "none";
-  submitBtn.disabled = false;
-  M.toast({
-    html: "Copied to Clipboard!",
-    inDuration: 1000,
-    classes: "toast",
-  });
-  setTimeout(() => {
-    urlInput.value = "";
-    aliasInput.value = "";
-    submitBtn.value = "Shorten";
-  }, 2500);
-}
+/**
+ * LENK.CF — Frontend Logic
+ * Vanilla JS, zero dependencies.
+ */
+(function () {
+  'use strict';
 
-/* If there is  custom ID provided The custom Id is registered  */
-async function getCustomURL(customID, url) {
-  url = encodeURIComponent(url);
-  submitBtn.disabled = true;
-  loader.style.display = "flex";
-  let customURL = await `${customID.length}_${customID}${url}`;
-  let target = `${http}://${window.location.host}/custom/${customURL}`;
-  console.log(target);
-  let response = await fetch(target).then((response) => response.json());
-  loader.style.display = "none";
-  submitBtn.disabled = false;
-  if (response == 0) {
-    aliasInput.value = "";
-    M.toast({
-      html: `${window.location.hostname}/${customID} already taken :(`,
-      inDuration: 1000,
-      classes: "red",
+  /* ── Intro Animation ───────────────────────────────────────────────── */
+  function runIntroAnimation() {
+    const overlay  = document.getElementById('intro-overlay');
+    const longEl   = document.getElementById('intro-long');
+    const arrowEl  = document.getElementById('intro-arrow');
+    const shortEl  = document.getElementById('intro-short');
+    const labelEl  = document.getElementById('intro-label');
+    const fill     = document.getElementById('intro-progress');
+    const app      = document.getElementById('app');
+
+    if (!overlay) return;
+
+    // Skip animation for reduced-motion preference
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      overlay.remove();
+      app.removeAttribute('aria-hidden');
+      app.classList.add('is-visible');
+      return;
+    }
+
+    // Kick off progress fill
+    requestAnimationFrame(() => {
+      fill.classList.add('is-running');
     });
-  } else {
-    submit.disabled = false;
-    urlInput.value = await `${http}://${window.location.host}/${customID}`;
-    submit.value = "copy";
-    urlInput.select();
-    document.execCommand("copy");
-    submitBtn.value = "Copied !";
-    submitBtn.disabled = false;
-    M.toast({
-      html: "Copied to Clipboard!",
-      inDuration: 1000,
-      classes: "toast",
-    });
+
+    // Step 1 — long URL expands in
+    setTimeout(() => longEl.classList.add('is-visible'),  80);
+
+    // Step 2 — arrow appears
+    setTimeout(() => arrowEl.classList.add('is-visible'), 520);
+
+    // Step 3 — long URL compresses away
     setTimeout(() => {
-      urlInput.value = "";
-      aliasInput.value = "";
-      submitBtn.value = "Shorten";
-    }, 2500);
-  }
-}
-/* For Progressive web app */
+      longEl.classList.remove('is-visible');
+      longEl.classList.add('is-compressing');
+    }, 720);
 
-window.addEventListener("load", () => {
-  registerSW();
-});
-async function registerSW() {
-  if ("serviceWorker" in navigator) {
+    // Step 4 — short URL appears
+    setTimeout(() => {
+      shortEl.classList.add('is-visible');
+      labelEl.classList.add('is-visible');
+    }, 900);
+
+    // Step 5 — fade out overlay, reveal app
+    setTimeout(() => {
+      overlay.classList.add('is-hidden');
+      overlay.addEventListener('transitionend', () => overlay.remove(), { once: true });
+      app.removeAttribute('aria-hidden');
+      app.classList.add('is-visible');
+    }, 1650);
+  }
+
+  document.addEventListener('DOMContentLoaded', runIntroAnimation);
+
+  /* ── Element refs ─────────────────────────────────────────────────── */
+  const el = {
+    form:          document.getElementById('shortener-form'),
+    urlInput:      document.getElementById('url'),
+    aliasInput:    document.getElementById('alias'),
+    submitBtn:     document.getElementById('submit'),
+    resultSection: document.getElementById('result-section'),
+    resultId:      document.getElementById('res-id'),
+    resultUrl:     document.getElementById('result-url'),
+    copyBtn:       document.getElementById('copy-btn'),
+    loader:        document.getElementById('loader'),
+    domainsTrigger:document.getElementById('domains-trigger'),
+    domainsPanel:  document.getElementById('domains-panel'),
+    closeDomains:  document.getElementById('close-domains'),
+    toastContainer:document.getElementById('toast-container'),
+    hostnameLabel: document.getElementById('hostname-label'),
+  };
+
+  /* ── Hostname label ───────────────────────────────────────────────── */
+  if (el.hostnameLabel) {
+    el.hostnameLabel.textContent = window.location.hostname;
+  }
+
+  /* ── Loader ───────────────────────────────────────────────────────── */
+  function setLoader(on) {
+    el.loader.hidden = !on;
+    el.loader.setAttribute('aria-hidden', String(!on));    el.submitBtn.classList.toggle('is-loading', on);  }
+
+  /* ── Toast ────────────────────────────────────────────────────────── */
+  function toast(message, type = 'success', duration = 3200) {
+    const t = document.createElement('div');
+    t.className = `toast toast--${type}`;
+    t.setAttribute('role', 'status');
+    t.textContent = message;
+    el.toastContainer.appendChild(t);
+
+    setTimeout(() => {
+      t.classList.add('is-exiting');
+      t.addEventListener('animationend', () => t.remove(), { once: true });
+    }, duration);
+  }
+
+  /* ── URL validation ───────────────────────────────────────────────── */
+  function ensureProtocol(url) {
+    if (!/^https?:\/\//i.test(url)) return 'https://' + url;
+    return url;
+  }
+
+  function isValidUrl(url) {
+    try { new URL(url); return true; }
+    catch (_) { return false; }
+  }
+
+  function isValidAlias(alias) {
+    return /^[a-zA-Z0-9\-_]+$/.test(alias);
+  }
+
+  /* ── Shorten flow ─────────────────────────────────────────────────── */
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    let url   = el.urlInput.value.trim();
+    const alias = el.aliasInput.value.trim();
+
+    // Auto-prefix protocol
+    url = ensureProtocol(url);
+    el.urlInput.value = url;
+
+    if (!isValidUrl(url)) {
+      toast('That doesn\'t look like a valid URL.', 'error');
+      el.urlInput.focus();
+      return;
+    }
+
+    if (alias && !isValidAlias(alias)) {
+      toast('Alias: letters, numbers, hyphens & underscores only.', 'error');
+      el.aliasInput.focus();
+      return;
+    }
+
+    setLoader(true);
+    el.submitBtn.disabled = true;
+
     try {
-      await navigator.serviceWorker.register("/serviceworker");
-    } catch (e) {
-      console.log(e);
+      let shortId;
+
+      if (alias) {
+        /* Custom alias ─────────────────────────────── */
+        const endpoint = `${origin}/custom`;
+        const res  = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url, shortId: alias }),
+        });
+        const data = await res.json();
+
+        if (data === 0) {
+          toast(`"${alias}" is already taken.`, 'error');
+          setLoader(false);
+          el.submitBtn.disabled = false;
+          return;
+        }
+        shortId = data;
+      } else {
+        /* Random alias ─────────────────────────────── */
+        const endpoint = `${origin}/p/${encodeURIComponent(url)}`;
+        const res  = await fetch(endpoint);
+        shortId = await res.json();
+      }
+
+      if (typeof shortId !== 'string') {
+        throw new Error('Unexpected response from server.');
+      }
+
+      /* ── Show result ───────────────────────────────── */
+      const shortUrl = `${origin}/${shortId}`;
+      el.resultId.textContent  = shortId;
+      el.resultUrl.value       = shortUrl;
+      el.resultSection.hidden  = false;
+
+      toast('Link ready!', 'success');
+      copyToClipboard(shortUrl, /* silent */ true);
+
+    } catch (err) {
+      console.error('[lenk] submit error:', err);
+      toast('Something went wrong. Please try again.', 'error');
+    } finally {
+      setLoader(false);
+      el.submitBtn.disabled = false;
     }
   }
-}
 
-let deferredPrompt;
-window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  showInstallPromotion();
-});
+  /* ── Copy ─────────────────────────────────────────────────────────── */
+  async function copyToClipboard(text, silent = false) {
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        el.resultUrl.select();
+        document.execCommand('copy');
+      }
+      if (!silent) toast('Copied!', 'success', 1800);
+      el.copyBtn.classList.add('copy-btn--success');
+      setTimeout(() => el.copyBtn.classList.remove('copy-btn--success'), 1800);
+    } catch (_) {
+      if (!silent) toast('Couldn\'t copy automatically — select and copy manually.', 'error');
+    }
+  }
+
+  /* ── Domains panel ────────────────────────────────────────────────── */
+  function openPanel() {
+    el.domainsPanel.hidden = false;
+    el.closeDomains.focus();
+  }
+
+  function closePanel() {
+    el.domainsPanel.hidden = true;
+    el.domainsTrigger.focus();
+  }
+
+  /* ── Event listeners ──────────────────────────────────────────────── */
+  el.form.addEventListener('submit', handleSubmit);
+
+  el.copyBtn.addEventListener('click', () => copyToClipboard(el.resultUrl.value));
+
+  el.domainsTrigger.addEventListener('click', openPanel);
+  el.closeDomains.addEventListener('click', closePanel);
+
+  // Close panel on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !el.domainsPanel.hidden) closePanel();
+  });
+
+  /* ── Service Worker ───────────────────────────────────────────────── */
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/serviceworker').catch(() => {});
+  }
+
+})();
